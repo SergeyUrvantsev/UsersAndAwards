@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.5" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\sersAndAwards.DAL.Interfaces\UsersAndAwards.DAL.Interfaces.csproj" />
     <ProjectReference Include="..\UsersAndAwards.BLL.Interfaces\UsersAndAwards.BLL.Interfaces.csproj" />
     <ProjectReference Include="..\UsersAndAwards.Entities\UsersAndAwards.Entities.csproj" />
   </ItemGroup>

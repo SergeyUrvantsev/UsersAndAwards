@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -12,7 +13,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\sersAndAwards.DAL.Interfaces\UsersAndAwards.DAL.Interfaces.csproj" />
-    <ProjectReference Include="..\UsersAndAwards.BLL.Interfaces\UsersAndAwards.BLL.Interfaces.csproj" />
+    <ProjectReference Include="..\UsersAndAwards.DAL.SQlite\UsersAndAwards.DAL.SQLiteDAO.csproj" />
+    <ProjectReference Include="..\UsersAndAwards.Dependencies\UsersAndAwards.Dependencies.csproj" />
     <ProjectReference Include="..\UsersAndAwards.Entities\UsersAndAwards.Entities.csproj" />
   </ItemGroup>
 

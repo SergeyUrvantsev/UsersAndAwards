@@ -1,11 +1,11 @@
 ﻿
 namespace UsersAndAwards.Entities
 {
-    public class User
+    public class UserEntity : IBaseEntity
     {
-        public Guid ID { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public int Age => DateTime.Now.Year - DateOfBirth.Year;
+        public IEnumerable<AwardEntity> Awards { get; set; }
     }
 }
