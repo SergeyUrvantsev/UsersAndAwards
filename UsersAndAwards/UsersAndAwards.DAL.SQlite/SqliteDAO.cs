@@ -135,12 +135,39 @@ namespace UsersAndAwards.DAL.SQLiteDAO
 
         public async Task<UserEntity> GetUserQuery(Guid userId)
         {
+            var entity =
+                await _dbContext.Users.FirstOrDefaultAsync(user =>
+                    user.Id == userId);
 
+            if (entity == null)
+            {
+                throw new NotFoundException(nameof(UserEntity), userId);
+            }
+
+            return entity;
         }
-        public async Task<AwardEntity> GetAwardQuery(Guid awardId);
+        public async Task<AwardEntity> GetAwardQuery(Guid awardId)
+        {
+            var entity =
+                await _dbContext.Awards.FirstOrDefaultAsync(user =>
+                    user.Id == awardId);
 
-        public async Task<IEnumerable<UserEntity>> GetAllUsersQuery();
-        public async Task<IEnumerable<AwardEntity>> GetAllAwardsQuery();
+            if (entity == null)
+            {
+                throw new NotFoundException(nameof(UserEntity), awardId);
+            }
+
+            return entity;
+        }
+
+        public async Task<IEnumerable<UserEntity>> GetAllUsersQuery()
+        {
+            return await _dbContext.Users.ToListAsync();
+        }
+        public async Task<IEnumerable<AwardEntity>> GetAllAwardsQuery()
+        {
+            return await _dbContext.Awards.ToListAsync();
+        }
 
         #endregion
 
