@@ -6,11 +6,11 @@ namespace UsersAndAwards.BLL.Interfaces
     {
         #region Commands
 
-        public Task CreateUserCommand(string name, DateTime DateOfBirth);
+        public Task<Guid> CreateUserCommand(string name, DateTime DateOfBirth);
         public Task UpdateUserCommand(Guid userId, string name, DateTime DateOfBirth);
         public Task DeleteUserCommand(Guid userId);
 
-        public Task CreateAwardCommand(string title);
+        public Task<Guid> CreateAwardCommand(string title);
         public Task UpdateAwardCommand(Guid awardId, string title);
         public Task DeleteAwardCommand(Guid awardId);
 

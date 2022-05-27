@@ -7,15 +7,21 @@ namespace UsersAndAwards.DAL.SQLiteDAO
 {
     public class SqliteDAO : IUserAndAwardsDAO
     {
-        private readonly DaoDbContext _dbContext = new DaoDbContext();
+        private readonly DaoDbContext _dbContext;
 
-        public SqliteDAO()
+        public SqliteDAO(DbContextOptions<DaoDbContext> options)
         {
+            _dbContext = new DaoDbContext(options);
+
             //For testing
             _dbContext.Database.EnsureDeleted();
             _dbContext.Database.EnsureCreated();
         }
 
+        public SqliteDAO(DaoDbContext context)
+        {
+            _dbContext = context;
+        }
 
         #region Commands
 
@@ -91,30 +97,12 @@ namespace UsersAndAwards.DAL.SQLiteDAO
         public async Task AddAwardToUser(Guid userId, Guid awardId)
         {
             var userEntity =
-                await _dbContext.Users.FindAsync(new object[] { userId });
+                await _dbContext.Users.FirstOrDefaultAsync(user =>
+                    user.Id == userId);
 
             var awardEntity =
-                await _dbContext.Awards.FindAsync(new object[] { awardId });
-
-            if (userEntity == null)
-            {
-                throw new NotFoundException(nameof(UserEntity), userId);
-            }
-            else if (awardEntity == null)
-            {
-                throw new NotFoundException(nameof(AwardEntity), awardId);
-            }
-
-            userEntity.Awards.Remove(awardEntity);
-            await _dbContext.SaveChangesAsync();
-        }
-        public async Task RemoveAwardAtUser(Guid userId, Guid awardId)
-        {
-            var userEntity =
-                await _dbContext.Users.FindAsync(new object[] { userId });
-
-            var awardEntity =
-                await _dbContext.Awards.FindAsync(new object[] { awardId });
+                await _dbContext.Awards.FirstOrDefaultAsync(award =>
+                    award.Id == awardId);
 
             if (userEntity == null)
             {
@@ -126,6 +114,29 @@ namespace UsersAndAwards.DAL.SQLiteDAO
             }
 
             userEntity.Awards.Add(awardEntity);
+            await _dbContext.SaveChangesAsync();
+        }
+        public async Task RemoveAwardAtUser(Guid userId, Guid awardId)
+        {
+            var userEntity =
+                await _dbContext.Users.FirstOrDefaultAsync(user =>
+                    user.Id == userId);
+
+            var awardEntity =
+                await _dbContext.Awards.FirstOrDefaultAsync(award =>
+                    award.Id == awardId);
+
+            if (userEntity == null)
+            {
+                throw new NotFoundException(nameof(UserEntity), userId);
+            }
+            else if (awardEntity == null)
+            {
+                throw new NotFoundException(nameof(AwardEntity), awardId);
+            }
+
+            userEntity.Awards.Remove(awardEntity);
+
             await _dbContext.SaveChangesAsync();
         }
 

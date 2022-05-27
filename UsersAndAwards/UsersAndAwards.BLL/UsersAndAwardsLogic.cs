@@ -18,7 +18,7 @@ namespace UsersAndAwards.BLL
 
         #region Commands
 
-        public async Task CreateUserCommand(string name, DateTime DateOfBirth)
+        public async Task<Guid> CreateUserCommand(string name, DateTime DateOfBirth)
         {
             var user = new UserEntity
             {
@@ -29,6 +29,8 @@ namespace UsersAndAwards.BLL
             };
 
             await _dao.CreateUserCommand(user);
+
+            return user.Id;
         }
 
         public async Task UpdateUserCommand(Guid userId, string name, DateTime DateOfBirth)
@@ -43,12 +45,12 @@ namespace UsersAndAwards.BLL
             await _dao.UpdateUserCommand(user);
         }
 
-        public Task DeleteUserCommand(Guid userId)
+        public async Task DeleteUserCommand(Guid userId)
         {
-            return _dao.DeleteUserCommand(userId);
+            await _dao.DeleteUserCommand(userId);
         }
 
-        public async Task CreateAwardCommand(string title)
+        public async Task<Guid> CreateAwardCommand(string title)
         {
             var award = new AwardEntity
             {
@@ -58,6 +60,8 @@ namespace UsersAndAwards.BLL
             };
 
             await _dao.CreateAwardCommand(award);
+
+            return award.Id;
         }
         public async Task UpdateAwardCommand(Guid awardId, string title)
         {

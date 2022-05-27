@@ -10,10 +10,13 @@ namespace UsersAndAwards.DAL.SQLiteDAO
         public DbSet<UserEntity> Users { get; set; }
         public DbSet<AwardEntity> Awards { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlite("Filename=SqliteDbEfcoreUsersAndAwards.sqlite");
-        }
+        public DaoDbContext(DbContextOptions<DaoDbContext> options)
+            : base(options) { }
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlite("Filename=SqliteDbEfcoreUsersAndAwards.sqlite");
+        //}
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

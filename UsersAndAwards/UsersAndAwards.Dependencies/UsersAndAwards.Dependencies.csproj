@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\sersAndAwards.DAL.Interfaces\UsersAndAwards.DAL.Interfaces.csproj" />
     <ProjectReference Include="..\UsersAndAwards.BLL.Interfaces\UsersAndAwards.BLL.Interfaces.csproj" />
     <ProjectReference Include="..\UsersAndAwards.BLL\UsersAndAwards.BLL.csproj" />
     <ProjectReference Include="..\UsersAndAwards.DAL.SQlite\UsersAndAwards.DAL.SQLiteDAO.csproj" />

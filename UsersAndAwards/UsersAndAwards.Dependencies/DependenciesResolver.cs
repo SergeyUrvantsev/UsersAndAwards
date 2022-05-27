@@ -1,4 +1,5 @@
-﻿using UsersAndAwards.BLL.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using UsersAndAwards.BLL.Interfaces;
 using UsersAndAwards.BLL;
 using UsersAndAwards.DAL.Interfaces;
 using UsersAndAwards.DAL.SQLiteDAO;
@@ -18,7 +19,9 @@ namespace UsersAndAwards.Dependencies
         #endregion
 
         private IUserAndAwardsDAO _usersAndAwardsDAO;
-        public IUserAndAwardsDAO UsersAndAwardsDAO => _usersAndAwardsDAO ??= new SqliteDAO();
+        public IUserAndAwardsDAO UsersAndAwardsDAO => _usersAndAwardsDAO ??= 
+            new SqliteDAO(new DbContextOptionsBuilder<DaoDbContext>()
+                .UseSqlite("Filename=SqliteDbEfcoreUsersAndAwards.sqlite").Options);
 
         private IUsersAndAwardsLogic _usersAndAwardsLogic;
         public IUsersAndAwardsLogic UsersAndAwardsBLL => _usersAndAwardsLogic ??= new UsersAndAwardsLogic(UsersAndAwardsDAO);
