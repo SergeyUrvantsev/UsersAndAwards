@@ -33,9 +33,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsersAndAwards.Exceptions",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsersAndAwards.Tests", "UsersAndAwards.Tests\UsersAndAwards.Tests.csproj", "{0B315B69-574B-4BA9-8E00-6400B3EC1B0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsersAndAwards.PL.WebApp", "UsersAndAwards.PL.WebApp\UsersAndAwards.PL.WebApp.csproj", "{D6FF395B-E2BB-4D74-B1E5-09E8CDA89FE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsersAndAwards.PL.WebApp", "UsersAndAwards.PL.WebApp\UsersAndAwards.PL.WebApp.csproj", "{D6FF395B-E2BB-4D74-B1E5-09E8CDA89FE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsersAndAwards.Models", "UsersAndAwards.Models\UsersAndAwards.Models.csproj", "{0027131F-D018-42CF-A566-5CFAA14D0CC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsersAndAwards.Models", "UsersAndAwards.Models\UsersAndAwards.Models.csproj", "{0027131F-D018-42CF-A566-5CFAA14D0CC1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
