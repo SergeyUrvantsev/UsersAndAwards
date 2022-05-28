@@ -1,9 +1,7 @@
-﻿using System;
-using System.Linq;
-using UsersAndAwards.BLL.Interfaces;
+﻿using UsersAndAwards.BLL.Interfaces;
 using UsersAndAwards.DAL.Interfaces;
-using UsersAndAwards.Entities;
 using UsersAndAwards.Domain;
+using UsersAndAwards.Models;
 using UsersAndAwards.Mappings;
 
 namespace UsersAndAwards.BLL
@@ -20,12 +18,11 @@ namespace UsersAndAwards.BLL
 
         public async Task<Guid> CreateUserCommand(string name, DateTime DateOfBirth)
         {
-            var user = new UserEntity
+            var user = new User
             {
                 Id = Guid.NewGuid(),
                 Name = name,
-                DateOfBirth = DateOfBirth,
-                Awards = new List<AwardEntity>()
+                DateOfBirth = DateOfBirth
             };
 
             await _dao.CreateUserCommand(user);
@@ -35,11 +32,11 @@ namespace UsersAndAwards.BLL
 
         public async Task UpdateUserCommand(Guid userId, string name, DateTime DateOfBirth)
         {
-            var user = new UserEntity
+            var user = new User
             {
                 Id = userId,
                 Name = name,
-                DateOfBirth = DateOfBirth,
+                DateOfBirth = DateOfBirth
             };
 
             await _dao.UpdateUserCommand(user);
@@ -52,11 +49,10 @@ namespace UsersAndAwards.BLL
 
         public async Task<Guid> CreateAwardCommand(string title)
         {
-            var award = new AwardEntity
+            var award = new Award
             {
                 Id = Guid.NewGuid(),
-                Title = title,
-                Users = new List<UserEntity>()
+                Title = title
             };
 
             await _dao.CreateAwardCommand(award);
@@ -65,7 +61,7 @@ namespace UsersAndAwards.BLL
         }
         public async Task UpdateAwardCommand(Guid awardId, string title)
         {
-            var award = new AwardEntity
+            var award = new Award
             {
                 Id = awardId,
                 Title = title
@@ -91,27 +87,27 @@ namespace UsersAndAwards.BLL
 
         #region Queries
 
-        public async Task<User> GetUserQuery(Guid userId)
+        public async Task<UserModel> GetUserQuery(Guid userId)
         {
-            return Mapper.UserToDomain(await _dao.GetUserQuery(userId));
+            return Mapper.UserDomainToModels(await _dao.GetUserQuery(userId));
         }
 
-        public async Task<Award> GetAwardQuery(Guid awardId)
+        public async Task<AwardModel> GetAwardQuery(Guid awardId)
         {
-            return Mapper.AwardToDomain(await _dao.GetAwardQuery(awardId));
+            return Mapper.AwardDomainToModels(await _dao.GetAwardQuery(awardId));
         }
 
-        public async Task<IEnumerable<User>> GetAllUsersQuery()
+        public async Task<IEnumerable<UserModel>> GetAllUsersQuery()
         {
 
             return (await _dao.GetAllUsersQuery())
-                .Select(user => Mapper.UserToDomain(user))
+                .Select(user => Mapper.UserDomainToModels(user))
                 .ToList();
         }
-        public async Task<IEnumerable<Award>> GetAllAwardsQuery()
+        public async Task<IEnumerable<AwardModel>> GetAllAwardsQuery()
         {
             return (await _dao.GetAllAwardsQuery())
-                .Select(award => Mapper.AwardToDomain(award))
+                .Select(award => Mapper.AwardDomainToModels(award))
                 .ToList();
         }
 

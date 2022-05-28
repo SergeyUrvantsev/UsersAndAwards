@@ -1,4 +1,4 @@
-﻿using UsersAndAwards.Domain;
+﻿using UsersAndAwards.Models;
 
 namespace UsersAndAwards.BLL.Interfaces
 {
@@ -21,11 +21,11 @@ namespace UsersAndAwards.BLL.Interfaces
 
         #region Queries
 
-        public Task<User> GetUserQuery(Guid userId);
-        public Task<Award> GetAwardQuery(Guid awardId);
+        public Task<UserModel> GetUserQuery(Guid userId);
+        public Task<AwardModel> GetAwardQuery(Guid awardId);
 
-        public Task<IEnumerable<User>> GetAllUsersQuery();
-        public Task<IEnumerable<Award>> GetAllAwardsQuery();
+        public Task<IEnumerable<UserModel>> GetAllUsersQuery();
+        public Task<IEnumerable<AwardModel>> GetAllAwardsQuery();
 
         #endregion
     }

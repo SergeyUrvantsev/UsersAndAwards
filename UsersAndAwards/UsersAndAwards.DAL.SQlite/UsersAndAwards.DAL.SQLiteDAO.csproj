@@ -12,8 +12,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\UsersAndAwards.DAL.Interfaces\UsersAndAwards.DAL.Interfaces.csproj" />
+    <ProjectReference Include="..\UsersAndAwards.Domain\UsersAndAwards.Domain.csproj" />
     <ProjectReference Include="..\UsersAndAwards.Entities\UsersAndAwards.Entities.csproj" />
     <ProjectReference Include="..\UsersAndAwards.Exceptions\UsersAndAwards.Exceptions.csproj" />
+    <ProjectReference Include="..\UsersAndAwards.Mappings\UsersAndAwards.Mappings.csproj" />
   </ItemGroup>
 
 </Project>

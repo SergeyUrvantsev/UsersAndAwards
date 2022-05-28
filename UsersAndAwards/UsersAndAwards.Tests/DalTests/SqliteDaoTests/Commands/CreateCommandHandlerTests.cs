@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using UsersAndAwards.Tests.DalTests.SqliteDaoTests.Common;
 using UsersAndAwards.Entities;
+using UsersAndAwards.Domain;
 using Xunit;
 
 namespace UsersAndAwards.Tests.DalTests.SqliteDaoTests.Commands
@@ -11,7 +12,7 @@ namespace UsersAndAwards.Tests.DalTests.SqliteDaoTests.Commands
         public async Task CreateUserCommandHandler_Success()
         {
             // Arrange
-            var userEntity = new UserEntity
+            var userDomain = new User
             {
                 Id = Guid.NewGuid(),
                 Name = "Name",
@@ -19,13 +20,13 @@ namespace UsersAndAwards.Tests.DalTests.SqliteDaoTests.Commands
             };
 
             //Act
-            await SqliteDao.CreateUserCommand(userEntity);
+            await SqliteDao.CreateUserCommand(userDomain);
 
             //Assert
             Assert.NotNull(
                 await Context.Users.SingleOrDefaultAsync(user =>
-                    user.Id == userEntity.Id && user.Name == userEntity.Name &&
-                    user.DateOfBirth == userEntity.DateOfBirth));
+                    user.Id == userDomain.Id && user.Name == userDomain.Name &&
+                    user.DateOfBirth == userDomain.DateOfBirth));
 
         }
 
@@ -33,19 +34,19 @@ namespace UsersAndAwards.Tests.DalTests.SqliteDaoTests.Commands
         public async Task CreateAwardCommandHandler_Success()
         {
             // Arrange
-            var awardEntity = new AwardEntity
+            var awardDomain = new Award
             {
                 Id = Guid.NewGuid(),
                 Title = "Title"
             };
 
             //Act
-            await SqliteDao.CreateAwardCommand(awardEntity);
+            await SqliteDao.CreateAwardCommand(awardDomain);
 
             //Assert
             Assert.NotNull(
                 await Context.Awards.SingleOrDefaultAsync(award =>
-                    award.Id == awardEntity.Id && award.Title == awardEntity.Title));
+                    award.Id == awardDomain.Id && award.Title == awardDomain.Title));
 
         }
     }

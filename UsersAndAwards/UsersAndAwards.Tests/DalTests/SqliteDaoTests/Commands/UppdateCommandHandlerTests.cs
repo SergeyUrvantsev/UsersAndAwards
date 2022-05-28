@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using UsersAndAwards.Tests.DalTests.SqliteDaoTests.Common;
-using UsersAndAwards.Entities;
+using UsersAndAwards.Domain;
 using UsersAndAwards.Exceptions;
 using UsersAndAwards.Tests.Common;
 using Xunit;
@@ -14,7 +14,7 @@ namespace UsersAndAwards.Tests.DalTests.SqliteDaoTests.Commands
         public async Task UppdateUserCommandHandler_Success()
         {
             //Arrange
-            var userEntity = new UserEntity
+            var userDomain = new User
             {
                 Id = DbContextFactory.UserAId,
                 Name = "New name",
@@ -22,20 +22,20 @@ namespace UsersAndAwards.Tests.DalTests.SqliteDaoTests.Commands
             };
 
             //Act
-            await SqliteDao.UpdateUserCommand(userEntity);
+            await SqliteDao.UpdateUserCommand(userDomain);
 
             //Assert
             Assert.NotNull(
                 await Context.Users.SingleOrDefaultAsync(user =>
-                    user.Id == userEntity.Id && user.Name == userEntity.Name &&
-                    user.DateOfBirth == userEntity.DateOfBirth));
+                    user.Id == userDomain.Id && user.Name == userDomain.Name &&
+                    user.DateOfBirth == userDomain.DateOfBirth));
         }
 
         [Fact]
         public async Task UppdateUserCommandHandler_FailOnWrongId()
         {
             // Arrange
-            var userEntity = new UserEntity
+            var userDomain = new User
             {
                 Id = Guid.NewGuid(),
                 Name = "New name",
@@ -44,33 +44,33 @@ namespace UsersAndAwards.Tests.DalTests.SqliteDaoTests.Commands
             //Act
             //Assert
             await Assert.ThrowsAsync<NotFoundException>(async () =>
-                await SqliteDao.UpdateUserCommand(userEntity));
+                await SqliteDao.UpdateUserCommand(userDomain));
         }
 
         [Fact]
         public async Task UppdateAwardCommandHandler_Success()
         {
             //Arrange
-            var awardEntity = new AwardEntity
+            var awardDomain = new Award
             {
                 Id = DbContextFactory.AwardAId,
                 Title = "New title"
             };
 
             //Act
-            await SqliteDao.UpdateAwardCommand(awardEntity);
+            await SqliteDao.UpdateAwardCommand(awardDomain);
 
             //Assert
             Assert.NotNull(
                 await Context.Awards.SingleOrDefaultAsync(award =>
-                    award.Id == awardEntity.Id && award.Title == awardEntity.Title));
+                    award.Id == awardDomain.Id && award.Title == awardDomain.Title));
         }
 
         [Fact]
         public async Task UppdateAwardCommandHandler_FailOnWrongId()
         {
             // Arrange
-            var awardEntity = new AwardEntity
+            var awardDomain = new Award
             {
                 Id = Guid.NewGuid(),
                 Title = "New title"
@@ -79,7 +79,7 @@ namespace UsersAndAwards.Tests.DalTests.SqliteDaoTests.Commands
             //Act
             //Assert
             await Assert.ThrowsAsync<NotFoundException>(async () =>
-                await SqliteDao.UpdateAwardCommand(awardEntity));
+                await SqliteDao.UpdateAwardCommand(awardDomain));
         }
     }
 }

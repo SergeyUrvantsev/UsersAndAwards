@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\UsersAndAwards.Domain\UsersAndAwards.Domain.csproj" />
     <ProjectReference Include="..\UsersAndAwards.Entities\UsersAndAwards.Entities.csproj" />
+    <ProjectReference Include="..\UsersAndAwards.Models\UsersAndAwards.Models.csproj" />
   </ItemGroup>
 
 </Project>

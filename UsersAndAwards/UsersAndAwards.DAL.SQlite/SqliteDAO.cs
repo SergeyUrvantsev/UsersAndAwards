@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using UsersAndAwards.DAL.Interfaces;
 using UsersAndAwards.Exceptions;
+using UsersAndAwards.Mappings;
+using UsersAndAwards.Domain;
 using UsersAndAwards.Entities;
 
 namespace UsersAndAwards.DAL.SQLiteDAO
@@ -25,12 +27,13 @@ namespace UsersAndAwards.DAL.SQLiteDAO
 
         #region Commands
 
-        public async Task CreateUserCommand(UserEntity request)
+        public async Task CreateUserCommand(User request)
         {
-            await _dbContext.Users.AddAsync(request);
+            
+            await _dbContext.Users.AddAsync(Mapper.UserDomainToUserEntity(request));
             await _dbContext.SaveChangesAsync();
         }
-        public async Task UpdateUserCommand(UserEntity request)
+        public async Task UpdateUserCommand(User request)
         {
             var entity =
                 await _dbContext.Users.FirstOrDefaultAsync(user =>
@@ -60,12 +63,12 @@ namespace UsersAndAwards.DAL.SQLiteDAO
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task CreateAwardCommand(AwardEntity request)
+        public async Task CreateAwardCommand(Award request)
         {
-            await _dbContext.Awards.AddAsync(request);
+            await _dbContext.Awards.AddAsync(Mapper.AwardDomainToAwardEntity(request));
             await _dbContext.SaveChangesAsync();
         }
-        public async Task UpdateAwardCommand(AwardEntity request)
+        public async Task UpdateAwardCommand(Award request)
         {
             var entity =
                 await _dbContext.Awards.FirstOrDefaultAsync(award =>
@@ -144,7 +147,7 @@ namespace UsersAndAwards.DAL.SQLiteDAO
 
         #region Queries
 
-        public async Task<UserEntity> GetUserQuery(Guid userId)
+        public async Task<User> GetUserQuery(Guid userId)
         {
             var entity =
                 await _dbContext.Users.FirstOrDefaultAsync(user =>
@@ -155,9 +158,9 @@ namespace UsersAndAwards.DAL.SQLiteDAO
                 throw new NotFoundException(nameof(UserEntity), userId);
             }
 
-            return entity;
+            return Mapper.UserEntityToUserDomain(entity);
         }
-        public async Task<AwardEntity> GetAwardQuery(Guid awardId)
+        public async Task<Award> GetAwardQuery(Guid awardId)
         {
             var entity =
                 await _dbContext.Awards.FirstOrDefaultAsync(user =>
@@ -168,16 +171,20 @@ namespace UsersAndAwards.DAL.SQLiteDAO
                 throw new NotFoundException(nameof(UserEntity), awardId);
             }
 
-            return entity;
+            return Mapper.AwardEntityToAwardDomain(entity);
         }
 
-        public async Task<IEnumerable<UserEntity>> GetAllUsersQuery()
+        public async Task<IEnumerable<User>> GetAllUsersQuery()
         {
-            return await _dbContext.Users.ToListAsync();
+            return (await _dbContext.Users.ToListAsync())
+                .Select(user => Mapper.UserEntityToUserDomain(user))
+                .ToList();
         }
-        public async Task<IEnumerable<AwardEntity>> GetAllAwardsQuery()
+        public async Task<IEnumerable<Award>> GetAllAwardsQuery()
         {
-            return await _dbContext.Awards.ToListAsync();
+            return (await _dbContext.Awards.ToListAsync())
+                .Select(award => Mapper.AwardEntityToAwardDomain(award))
+                .ToList();
         }
 
         #endregion

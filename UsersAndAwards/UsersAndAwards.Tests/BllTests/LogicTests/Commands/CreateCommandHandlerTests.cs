@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using UsersAndAwards.Tests.BllTests.LogicTests.Common;
-using UsersAndAwards.Entities;
 using Xunit;
 
 namespace UsersAndAwards.Tests.BllTests.LogicTests.Commands

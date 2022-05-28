@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using UsersAndAwards.Entities;
+﻿using UsersAndAwards.Domain;
 
 namespace UsersAndAwards.DAL.Interfaces
 {
@@ -7,12 +6,12 @@ namespace UsersAndAwards.DAL.Interfaces
     {
         #region Commands
 
-        public Task CreateUserCommand(UserEntity request);
-        public Task UpdateUserCommand(UserEntity request);
+        public Task CreateUserCommand(User request);
+        public Task UpdateUserCommand(User request);
         public Task DeleteUserCommand(Guid userId);
 
-        public Task CreateAwardCommand(AwardEntity request);
-        public Task UpdateAwardCommand(AwardEntity request);
+        public Task CreateAwardCommand(Award request);
+        public Task UpdateAwardCommand(Award request);
         public Task DeleteAwardCommand(Guid awardId);
 
         public Task AddAwardToUser(Guid userId, Guid awardId);
@@ -22,11 +21,11 @@ namespace UsersAndAwards.DAL.Interfaces
 
         #region Queries
 
-        public Task<UserEntity> GetUserQuery(Guid userId);
-        public Task<AwardEntity> GetAwardQuery(Guid awardId);
+        public Task<User> GetUserQuery(Guid userId);
+        public Task<Award> GetAwardQuery(Guid awardId);
 
-        public Task<IEnumerable<UserEntity>> GetAllUsersQuery();
-        public Task<IEnumerable<AwardEntity>> GetAllAwardsQuery();
+        public Task<IEnumerable<User>> GetAllUsersQuery();
+        public Task<IEnumerable<Award>> GetAllAwardsQuery();
 
         #endregion
     }

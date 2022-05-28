@@ -1,6 +1,6 @@
 ﻿using UsersAndAwards.Tests.DalTests.SqliteDaoTests.Common;
 using UsersAndAwards.Exceptions;
-using UsersAndAwards.Entities;
+using UsersAndAwards.Domain;
 using UsersAndAwards.Tests.Common;
 using Xunit;
 using Shouldly;
@@ -18,7 +18,7 @@ namespace UsersAndAwards.Tests.DalTests.SqliteDaoTests.Queries
             var userA = await SqliteDao.GetUserQuery(DbContextFactory.UserAId);
 
             //Assert
-            userA.ShouldBeOfType<UserEntity>();
+            userA.ShouldBeOfType<User>();
             userA.Name.ShouldBe("UserA");
             userA.DateOfBirth.ShouldBe(DateTime.Today);
         }
@@ -41,7 +41,7 @@ namespace UsersAndAwards.Tests.DalTests.SqliteDaoTests.Queries
             var awardA = await SqliteDao.GetAwardQuery(DbContextFactory.AwardAId);
 
             //Assert
-            awardA.ShouldBeOfType<AwardEntity>();
+            awardA.ShouldBeOfType<Award>();
             awardA.Title.ShouldBe("AwardA");
         }
 

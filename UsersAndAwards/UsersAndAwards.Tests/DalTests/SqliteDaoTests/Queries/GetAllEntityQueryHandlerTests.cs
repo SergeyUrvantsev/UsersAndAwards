@@ -1,5 +1,6 @@
 ﻿using UsersAndAwards.Tests.DalTests.SqliteDaoTests.Common;
 using UsersAndAwards.Exceptions;
+using UsersAndAwards.Domain;
 using UsersAndAwards.Entities;
 using Xunit;
 using Shouldly;
@@ -16,7 +17,7 @@ namespace UsersAndAwards.Tests.DalTests.SqliteDaoTests.Queries
             var usersList = await SqliteDao.GetAllUsersQuery();
 
             //Assert
-            usersList.ShouldBeOfType<List<UserEntity>>();
+            usersList.ShouldBeOfType<List<User>>();
             usersList.Count().ShouldBe(2);
         }
 
@@ -28,7 +29,7 @@ namespace UsersAndAwards.Tests.DalTests.SqliteDaoTests.Queries
             var awardsList = await SqliteDao.GetAllAwardsQuery();
 
             //Assert
-            awardsList.ShouldBeOfType<List<AwardEntity>>();
+            awardsList.ShouldBeOfType<List<Award>>();
             awardsList.Count().ShouldBe(2);
         }
 

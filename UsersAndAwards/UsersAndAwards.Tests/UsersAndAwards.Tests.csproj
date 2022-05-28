@@ -26,12 +26,14 @@
 
   <ItemGroup>
     <ProjectReference Include="..\UsersAndAwards.BLL.Interfaces\UsersAndAwards.BLL.Interfaces.csproj" />
+    <ProjectReference Include="..\UsersAndAwards.BLL\UsersAndAwards.BLL.csproj" />
     <ProjectReference Include="..\UsersAndAwards.DAL.Interfaces\UsersAndAwards.DAL.Interfaces.csproj" />
     <ProjectReference Include="..\UsersAndAwards.DAL.SQlite\UsersAndAwards.DAL.SQLiteDAO.csproj" />
     <ProjectReference Include="..\UsersAndAwards.Dependencies\UsersAndAwards.Dependencies.csproj" />
     <ProjectReference Include="..\UsersAndAwards.Domain\UsersAndAwards.Domain.csproj" />
     <ProjectReference Include="..\UsersAndAwards.Entities\UsersAndAwards.Entities.csproj" />
     <ProjectReference Include="..\UsersAndAwards.Exceptions\UsersAndAwards.Exceptions.csproj" />
+    <ProjectReference Include="..\UsersAndAwards.Models\UsersAndAwards.Models.csproj" />
   </ItemGroup>
 
 </Project>

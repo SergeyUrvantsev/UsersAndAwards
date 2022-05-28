@@ -1,7 +1,7 @@
 ﻿using UsersAndAwards.Tests.BllTests.LogicTests.Common;
 using UsersAndAwards.Exceptions;
 using UsersAndAwards.Tests.Common;
-using UsersAndAwards.Domain;
+using UsersAndAwards.Models;
 using Xunit;
 using Shouldly;
 
@@ -17,7 +17,7 @@ namespace UsersAndAwards.Tests.BllTests.LogicTests.Queries
             var userB = await Bll.GetUserQuery(DbContextFactory.UserBId);
 
             //Assert
-            userB.ShouldBeOfType<User>();
+            userB.ShouldBeOfType<UserModel>();
             userB.Name.ShouldBe("UserB");
             userB.DateOfBirth.ShouldBe(DateTime.Today);
             userB.Awards.Count().ShouldBe(1);
@@ -41,7 +41,7 @@ namespace UsersAndAwards.Tests.BllTests.LogicTests.Queries
             var awardB = await Bll.GetAwardQuery(DbContextFactory.AwardBId);
 
             //Assert
-            awardB.ShouldBeOfType<Award>();
+            awardB.ShouldBeOfType<AwardModel>();
             awardB.Title.ShouldBe("AwardB");
             awardB.Users.Count().ShouldBe(1);
         }

@@ -1,7 +1,7 @@
 ﻿using UsersAndAwards.Tests.BllTests.LogicTests.Common;
 using UsersAndAwards.Exceptions;
 using UsersAndAwards.Tests.Common;
-using UsersAndAwards.Domain;
+using UsersAndAwards.Models;
 using Xunit;
 using Shouldly;
 
@@ -17,7 +17,7 @@ namespace UsersAndAwards.Tests.BllTests.LogicTests.Queries
             var usersList = await Bll.GetAllUsersQuery();
 
             //Assert
-            usersList.ShouldBeOfType<List<User>>();
+            usersList.ShouldBeOfType<List<UserModel>>();
             usersList.Count().ShouldBe(2);
         }
 
@@ -29,7 +29,7 @@ namespace UsersAndAwards.Tests.BllTests.LogicTests.Queries
             var awardsList = await Bll.GetAllAwardsQuery();
 
             //Assert
-            awardsList.ShouldBeOfType<List<Award>>();
+            awardsList.ShouldBeOfType<List<AwardModel>>();
             awardsList.Count().ShouldBe(2);
         }
     }
