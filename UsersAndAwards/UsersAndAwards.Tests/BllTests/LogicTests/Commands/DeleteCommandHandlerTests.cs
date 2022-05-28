@@ -1,9 +1,9 @@
-﻿using UsersAndAwards.Tests.DalTests.SqliteDaoTests.Common;
+﻿using UsersAndAwards.Tests.BllTests.LogicTests.Common;
 using UsersAndAwards.Exceptions;
-using Xunit;
 using UsersAndAwards.Tests.Common;
+using Xunit;
 
-namespace UsersAndAwards.Tests.DalTests.SqliteDaoTests.Commands
+namespace UsersAndAwards.Tests.BllTests.LogicTests.Commands
 {
     public class DeleteCommandHandlerTests : TestBase
     {
@@ -13,7 +13,7 @@ namespace UsersAndAwards.Tests.DalTests.SqliteDaoTests.Commands
             //Arrange
 
             //Act
-            await SqliteDao.DeleteUserCommand(DbContextFactory.UserAId);
+            await Bll.DeleteUserCommand(DbContextFactory.UserAId);
 
             //Assert
             Assert.Null(Context.Users.SingleOrDefault(user =>
@@ -27,7 +27,7 @@ namespace UsersAndAwards.Tests.DalTests.SqliteDaoTests.Commands
             //Act
             //Assert
             await Assert.ThrowsAsync<NotFoundException>(async () =>
-                await SqliteDao.DeleteUserCommand(Guid.NewGuid()));
+                await Bll.DeleteUserCommand(Guid.NewGuid()));
         }
 
         [Fact]
@@ -36,7 +36,7 @@ namespace UsersAndAwards.Tests.DalTests.SqliteDaoTests.Commands
             //Arrange
 
             //Act
-            await SqliteDao.DeleteAwardCommand(DbContextFactory.AwardAId);
+            await Bll.DeleteAwardCommand(DbContextFactory.AwardAId);
 
             //Assert
             Assert.Null(Context.Awards.SingleOrDefault(award =>
@@ -50,7 +50,7 @@ namespace UsersAndAwards.Tests.DalTests.SqliteDaoTests.Commands
             //Act
             //Assert
             await Assert.ThrowsAsync<NotFoundException>(async () =>
-                await SqliteDao.DeleteAwardCommand(Guid.NewGuid()));
+                await Bll.DeleteAwardCommand(Guid.NewGuid()));
         }
     }
 }

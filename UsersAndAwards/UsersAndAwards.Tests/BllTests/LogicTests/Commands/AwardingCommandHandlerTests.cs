@@ -1,11 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using UsersAndAwards.Tests.DalTests.SqliteDaoTests.Common;
+using UsersAndAwards.Tests.BllTests.LogicTests.Common;
 using UsersAndAwards.Exceptions;
 using UsersAndAwards.Tests.Common;
 using Xunit;
 
-
-namespace UsersAndAwards.Tests.DalTests.SqliteDaoTests.Commands
+namespace UsersAndAwards.Tests.BllTests.LogicTests.Commands
 {
     public class AwardingCommandHandlerTests : TestBase
     {
@@ -14,7 +13,7 @@ namespace UsersAndAwards.Tests.DalTests.SqliteDaoTests.Commands
         {
             // Arrange
             //Act
-            await SqliteDao.AddAwardToUser(DbContextFactory.UserAId, DbContextFactory.AwardAId);
+            await Bll.AddAwardToUser(DbContextFactory.UserAId, DbContextFactory.AwardAId);
 
             //Assert
             Assert.NotNull(
@@ -36,7 +35,7 @@ namespace UsersAndAwards.Tests.DalTests.SqliteDaoTests.Commands
             //Act
             //Assert
             await Assert.ThrowsAsync<NotFoundException>(async () =>
-                await SqliteDao.AddAwardToUser(Guid.NewGuid(), Guid.NewGuid()));
+                await Bll.AddAwardToUser(Guid.NewGuid(), Guid.NewGuid()));
         }
 
         [Fact]
@@ -44,7 +43,7 @@ namespace UsersAndAwards.Tests.DalTests.SqliteDaoTests.Commands
         {
             // Arrange
             //Act
-            await SqliteDao.RemoveAwardAtUser(DbContextFactory.UserBId, DbContextFactory.AwardBId);
+            await Bll.RemoveAwardAtUser(DbContextFactory.UserBId, DbContextFactory.AwardBId);
 
             //Assert
             Assert.NotNull(
@@ -64,7 +63,7 @@ namespace UsersAndAwards.Tests.DalTests.SqliteDaoTests.Commands
             //Act
             //Assert
             await Assert.ThrowsAsync<NotFoundException>(async () =>
-                await SqliteDao.RemoveAwardAtUser(Guid.NewGuid(), Guid.NewGuid()));
+                await Bll.RemoveAwardAtUser(Guid.NewGuid(), Guid.NewGuid()));
         }
     }
 }

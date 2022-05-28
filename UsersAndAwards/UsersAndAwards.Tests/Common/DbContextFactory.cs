@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.InMemory;
 using UsersAndAwards.DAL.SQLiteDAO;
 using UsersAndAwards.Entities;
 
-namespace UsersAndAwards.Tests.DalTests.SqliteDaoTests.Common
+namespace UsersAndAwards.Tests.Common
 {
     public class DbContextFactory
     {

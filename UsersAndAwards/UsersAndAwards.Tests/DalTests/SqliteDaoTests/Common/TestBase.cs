@@ -1,14 +1,15 @@
 ﻿using UsersAndAwards.DAL.Interfaces;
 using UsersAndAwards.DAL.SQLiteDAO;
+using UsersAndAwards.Tests.Common;
 
 namespace UsersAndAwards.Tests.DalTests.SqliteDaoTests.Common
 {
-    public abstract class TestCommandBase : IDisposable
+    public abstract class TestBase : IDisposable
     {
         protected readonly DaoDbContext Context;
         protected readonly IUserAndAwardsDAO SqliteDao;
 
-        public TestCommandBase()
+        public TestBase()
         {
             Context = DbContextFactory.Create();
             SqliteDao = new SqliteDAO(Context);

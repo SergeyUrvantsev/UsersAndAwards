@@ -2,11 +2,13 @@
 using UsersAndAwards.Tests.DalTests.SqliteDaoTests.Common;
 using UsersAndAwards.Entities;
 using UsersAndAwards.Exceptions;
+using UsersAndAwards.Tests.Common;
 using Xunit;
+
 
 namespace UsersAndAwards.Tests.DalTests.SqliteDaoTests.Commands
 {
-    public class UppdateCommandHandlerTests : TestCommandBase
+    public class UppdateCommandHandlerTests : TestBase
     {
         [Fact]
         public async Task UppdateUserCommandHandler_Success()

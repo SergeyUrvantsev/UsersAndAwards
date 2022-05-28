@@ -5,7 +5,7 @@ using Xunit;
 
 namespace UsersAndAwards.Tests.DalTests.SqliteDaoTests.Commands
 {
-    public class CreateCommandHandlerTests : TestCommandBase
+    public class CreateCommandHandlerTests : TestBase
     {
         [Fact]
         public async Task CreateUserCommandHandler_Success()
