@@ -29,18 +29,29 @@
             @Html.DisplayFor(model => model.User.Age)
         </dd>
 
-        @foreach (var item in Model.User.Awards)
-        {
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(modelItem => item.Title)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(modelItem => item.Title)
-            </dd>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                     Title
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+        @foreach (var item in Model.User.Awards) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                </tr>
         }
+            </tbody>
+        </table>
     </dl>
 </div>
 <div>
     <a asp-page="EditUser" asp-route-id="@Model.User.Id">Edit</a> |
+    <a asp-page="GiveAnAward" asp-route-id="@Model.User.Id">Give an award</a> |
     <a asp-page="UsersList">Back to List</a>
 </div>

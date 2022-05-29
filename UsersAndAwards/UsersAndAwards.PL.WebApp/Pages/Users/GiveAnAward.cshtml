@@ -1,0 +1,39 @@
+﻿@page "{id:Guid}"
+@model UsersAndAwards.PL.WebApp.Pages.Users.GiveAnAwardModel
+@{
+	ViewData["Title"] = "Give an award";
+}
+
+<form>
+    <p>
+        Title: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Awards[0].Title)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Awards) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                <form method="post">
+                    @*<input type="hidden" asp-for="userId" />*@
+                    <input type="hidden" asp-for="@item.Id"  />
+                    <input type="submit" value="Give an" class="btn btn-info" />
+                </form>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

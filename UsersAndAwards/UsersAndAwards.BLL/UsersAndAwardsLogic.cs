@@ -23,6 +23,8 @@ namespace UsersAndAwards.BLL
             Titles = (await _dao.GetAllAwardsQuery())
                 .Select(award => award.Title)
                 .ToList();
+
+
         }
 
 
