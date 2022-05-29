@@ -10,8 +10,20 @@ namespace UsersAndAwards.BLL
     {
         private readonly IUserAndAwardsDAO _dao;
 
-        public UsersAndAwardsLogic(IUserAndAwardsDAO dao) =>
+        private List<string> Titles;
+
+        public UsersAndAwardsLogic(IUserAndAwardsDAO dao)
+        {
             _dao = dao;
+            Сaching();
+        }
+
+        public async void Сaching()
+        {
+            Titles = (await _dao.GetAllAwardsQuery())
+                .Select(award => award.Title)
+                .ToList();
+        }
 
 
         #region Commands
@@ -57,6 +69,8 @@ namespace UsersAndAwards.BLL
 
             await _dao.CreateAwardCommand(award);
 
+            Titles.Add(award.Title);
+
             return award.Id;
         }
         public async Task UpdateAwardCommand(Guid awardId, string title)
@@ -68,10 +82,14 @@ namespace UsersAndAwards.BLL
             };
 
             await _dao.UpdateAwardCommand(award);
+
+            Сaching();
         }
         public async Task DeleteAwardCommand(Guid awardId)
         {
             await _dao.DeleteAwardCommand(awardId);
+
+            Сaching();
         }
 
         public async Task AddAwardToUser(Guid userId, Guid awardId)
@@ -109,6 +127,11 @@ namespace UsersAndAwards.BLL
             return (await _dao.GetAllAwardsQuery())
                 .Select(award => Mapper.AwardDomainToModels(award))
                 .ToList();
+        }
+
+        public IEnumerable<string> GetAllTitleQuery()
+        {
+            return Titles;
         }
 
         #endregion

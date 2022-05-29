@@ -1,0 +1,43 @@
+﻿@page
+@model UsersAndAwards.PL.WebApp.Pages.Awards.AwardsListModel
+@{
+	ViewData["Title"] = "Users";
+}
+
+<h1>List of awards</h1>
+
+<p>
+    <a asp-page="CreateAward">Create New</a>
+</p>
+
+<form>
+    <p>
+        Title: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Awards[0].Title)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Awards) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                <a asp-page="./EditAward" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./DetailsAward" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./DeleteAward" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

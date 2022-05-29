@@ -9,6 +9,7 @@ var app = builder.Build();
 // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    var a = UsersAndAwards.Dependencies.DependenciesResolver.Instance.UsersAndAwardsBLL;
     app.UseDeveloperExceptionPage();
 }
 else if (!app.Environment.IsDevelopment())

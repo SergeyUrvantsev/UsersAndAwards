@@ -4,7 +4,56 @@
 	ViewData["Title"] = "Users";
 }
 
-<div class="text-center">
-    <h1 class="display-4">A list of users</h1>
-    <p></a>mmm</p>
-</div>
+<h1>List of users</h1>
+
+<p>
+    <a asp-page="CreateUser">Create New</a>
+</p>
+
+<form>
+    <p>
+        Name: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" />
+        Award: 
+        <select asp-for="AwardTitle" asp-items="Model.Titles">
+         <option value="">Award</option>
+        </select>
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Users[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users[0].DateOfBirth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users[0].Age)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Users) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfBirth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                <a asp-page="./EditUser" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./DetailsUser" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./DeleteUser" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

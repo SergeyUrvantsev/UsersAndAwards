@@ -27,6 +27,8 @@ namespace UsersAndAwards.BLL.Interfaces
         public Task<IEnumerable<UserModel>> GetAllUsersQuery();
         public Task<IEnumerable<AwardModel>> GetAllAwardsQuery();
 
+        public IEnumerable<string> GetAllTitleQuery();
+
         #endregion
     }
 }

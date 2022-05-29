@@ -1,16 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace UsersAndAwards.Models
+namespace UsersAndAwards.Models.Handlers
 {
-    public class AwardModel
+    public class AwardCreateHandler
     {
-        public Guid Id { get; set; }
-
         [StringLength(250, MinimumLength = 1)]
         [Display(Name = "Title")]
         [Required]
         public string Title { get; set; }
-
-        public IEnumerable<UsersListModel> Users { get; set; }
     }
 }
