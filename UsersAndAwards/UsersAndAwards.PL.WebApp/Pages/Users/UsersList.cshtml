@@ -13,10 +13,10 @@
 <form>
     <p>
         Name: <input type="text" asp-for="SearchString" />
-        <input type="submit" value="Filter" />
         Award: 
         <select asp-for="AwardTitle" asp-items="Model.Titles">
          <option value="">Award</option>
+         <input type="submit" value="Filter" />
         </select>
     </p>
 </form>
@@ -52,7 +52,8 @@
                 <a asp-page="./EditUser" asp-route-id="@item.Id">Edit</a> |
                 <a asp-page="./DetailsUser" asp-route-id="@item.Id">Details</a> |
                 <a asp-page="./DeleteUser" asp-route-id="@item.Id">Delete</a> |
-                <a asp-page="./GiveAnAward" asp-route-id="@item.Id">Give an award</a>
+                <a asp-page="./GiveAnAward" asp-route-id="@item.Id">Give an award</a> |
+                <a asp-page="./RemoveAward" asp-route-id="@item.Id">Remove award</a>
             </td>
         </tr>
 }

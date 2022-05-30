@@ -17,15 +17,25 @@
             @Html.DisplayFor(model => model.Award.Title)
         </dd>
 
-        @foreach (var item in Model.Award.Users)
-        {
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(modelItem => item.Name)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(modelItem => item.Name)
-            </dd>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                     User
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+        @foreach (var item in Model.Award.Users) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                </tr>
         }
+            </tbody>
+        </table>
     </dl>
 </div>
 <div>

@@ -31,7 +31,9 @@
 </div>
 
 <div>
-    <a asp-page="UsersList">Back to List</a>
+    <a asp-page="UsersList">Back to List</a> |
+    <a asp-page="./GiveAnAward" asp-route-id="@Model.User.Id">Give an award</a> |
+    <a asp-page="./RemoveAward" asp-route-id="@Model.User.Id">Remove award</a>
 </div>
 
 @section Scripts {
