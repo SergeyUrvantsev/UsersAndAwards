@@ -4,9 +4,11 @@ using UsersAndAwards.Models.Handlers;
 using UsersAndAwards.BLL.Interfaces;
 using UsersAndAwards.Dependencies;
 using UsersAndAwards.Exceptions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace UsersAndAwards.PL.WebApp.Pages.Awards
 {
+    [Authorize(Roles = "admin")]
     public class EditAwardModel : PageModel
     {
         private readonly IUsersAndAwardsLogic _bll;
@@ -31,7 +33,7 @@ namespace UsersAndAwards.PL.WebApp.Pages.Awards
                 };
                 return Page();
             }
-            catch (NotFoundException ex)
+            catch (NotFoundException)
             {
                 return NotFound();
             }
@@ -48,7 +50,7 @@ namespace UsersAndAwards.PL.WebApp.Pages.Awards
             {
                 await _bll.UpdateAwardCommand(Award.Id, Award.Title);
             }
-            catch (NotFoundException ex)
+            catch (NotFoundException)
             {
                 return NotFound();
             }

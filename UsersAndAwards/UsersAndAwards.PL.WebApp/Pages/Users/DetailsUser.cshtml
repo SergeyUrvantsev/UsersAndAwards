@@ -50,7 +50,12 @@
         </table>
     </dl>
 </div>
+
 <div>
-    <a asp-page="EditUser" asp-route-id="@Model.User.Id">Edit</a> |
-    <a asp-page="UsersList">Back to List</a>
+
+    <a asp-page="UsersList">Back to List</a> |
+    @if(User.IsInRole("admin"))
+        {
+            <a asp-page="EditUser" asp-route-id="@Model.User.Id">Edit</a> 
+        }
 </div>

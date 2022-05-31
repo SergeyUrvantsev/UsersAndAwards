@@ -4,9 +4,11 @@ using UsersAndAwards.Models;
 using UsersAndAwards.BLL.Interfaces;
 using UsersAndAwards.Dependencies;
 using UsersAndAwards.Exceptions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace UsersAndAwards.PL.WebApp.Pages.Users
 {
+    [Authorize(Roles = "admin")]
     public class DeleteUserModel : PageModel
     {
         private readonly IUsersAndAwardsLogic _bll;
@@ -26,7 +28,7 @@ namespace UsersAndAwards.PL.WebApp.Pages.Users
                 User = await _bll.GetUserQuery(id);
                 return Page();
             }
-            catch (NotFoundException ex)
+            catch (NotFoundException)
             {
                 return NotFound();
             }
@@ -39,7 +41,7 @@ namespace UsersAndAwards.PL.WebApp.Pages.Users
                 await _bll.DeleteUserCommand(id);
                 return RedirectToPage("./UsersList");
             }
-            catch (NotFoundException ex)
+            catch (NotFoundException)
             {
                 return NotFound();
             }

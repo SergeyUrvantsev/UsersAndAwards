@@ -4,9 +4,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using UsersAndAwards.Models;
 using UsersAndAwards.BLL.Interfaces;
 using UsersAndAwards.Dependencies;
+using Microsoft.AspNetCore.Authorization;
 
 namespace UsersAndAwards.PL.WebApp.Pages
 {
+    [Authorize]
     public class UsersListModel : PageModel
     {
 

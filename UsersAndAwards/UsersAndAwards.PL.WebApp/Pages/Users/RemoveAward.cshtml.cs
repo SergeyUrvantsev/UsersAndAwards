@@ -4,9 +4,11 @@ using UsersAndAwards.Models;
 using UsersAndAwards.BLL.Interfaces;
 using UsersAndAwards.Dependencies;
 using UsersAndAwards.Exceptions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace UsersAndAwards.PL.WebApp.Pages.Users
 {
+    [Authorize]
     public class RemoveAwardModel : PageModel
     {
         private readonly IUsersAndAwardsLogic _bll;
@@ -50,7 +52,7 @@ namespace UsersAndAwards.PL.WebApp.Pages.Users
             {
                 await _bll.RemoveAwardAtUser(id, item_id);
             }
-            catch (NotFoundException ex)
+            catch (NotFoundException)
             {
                 return NotFound();
             }

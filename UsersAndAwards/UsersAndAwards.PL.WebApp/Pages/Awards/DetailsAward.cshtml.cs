@@ -4,9 +4,11 @@ using UsersAndAwards.Models;
 using UsersAndAwards.BLL.Interfaces;
 using UsersAndAwards.Dependencies;
 using UsersAndAwards.Exceptions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace UsersAndAwards.PL.WebApp.Pages.Awards
 {
+    [Authorize]
     public class DetailsAwardModel : PageModel
     {
         private readonly IUsersAndAwardsLogic _bll;
@@ -25,7 +27,7 @@ namespace UsersAndAwards.PL.WebApp.Pages.Awards
                 Award = await _bll.GetAwardQuery(id);
                 return Page();
             }
-            catch (NotFoundException ex)
+            catch (NotFoundException)
             {
                 return NotFound();
             }

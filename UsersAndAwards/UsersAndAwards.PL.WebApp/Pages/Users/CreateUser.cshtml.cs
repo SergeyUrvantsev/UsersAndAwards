@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using UsersAndAwards.BLL.Interfaces;
@@ -6,6 +7,7 @@ using UsersAndAwards.Models.Handlers;
 
 namespace UsersAndAwards.PL.WebApp.Pages.Users
 {
+    [Authorize(Roles = "admin")]
     public class CreateUserModel : PageModel
     {
         private readonly IUsersAndAwardsLogic _bll;

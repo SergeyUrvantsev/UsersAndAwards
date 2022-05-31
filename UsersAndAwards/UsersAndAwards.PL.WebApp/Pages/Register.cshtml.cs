@@ -33,6 +33,7 @@ namespace UsersAndAwards.PL.WebApp.Pages
                 var result = await userManager.CreateAsync(user, Model.Password);
                 if (result.Succeeded)
                 {
+                    await userManager.AddToRoleAsync(user, "client");
                     await signInManager.SignInAsync(user, false);
                     return RedirectToPage("./Index");
                 }

@@ -38,7 +38,11 @@
         </table>
     </dl>
 </div>
+
 <div>
-    <a asp-page="EditAward" asp-route-id="@Model.Award.Id">Edit</a> |
-    <a asp-page="AwardsList">Back to List</a>
+    <a asp-page="AwardsList">Back to List</a> |
+    @if(User.IsInRole("admin"))
+        {
+            <a asp-page="EditAward" asp-route-id="@Model.Award.Id">Edit</a> 
+        }
 </div>
